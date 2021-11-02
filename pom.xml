@@ -49,6 +49,26 @@
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-config-yaml</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-hibernate-orm-panache-kotlin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-agroal</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-jdbc-postgresql</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-logging-json</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-health</artifactId>
     </dependency>
     <dependency>
@@ -68,6 +88,10 @@
       <artifactId>quarkus-rest-client-jackson</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.fasterxml.jackson.module</groupId>
       <artifactId>jackson-module-kotlin</artifactId>
       <version>${kotlin.jackson.version}</version>
@@ -83,15 +107,16 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.jetbrains.kotlin</groupId>
-      <artifactId>kotlin-stdlib-jdk8</artifactId>
-    </dependency>
-    <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>kotlin-extensions</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-container-image-jib</artifactId>
+    </dependency>
   </dependencies>
+
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
@@ -163,6 +188,7 @@
           <jvmTarget>11</jvmTarget>
           <compilerPlugins>
             <plugin>all-open</plugin>
+            <plugin>jpa</plugin>
           </compilerPlugins>
           <pluginOptions>
             <option>all-open:annotation=javax.ws.rs.Path</option>
@@ -206,6 +232,7 @@
       </build>
       <properties>
         <quarkus.package.type>native</quarkus.package.type>
+        <quarkus.native.additional-build-args>-J-Xmx5G</quarkus.native.additional-build-args>
       </properties>
     </profile>
   </profiles>

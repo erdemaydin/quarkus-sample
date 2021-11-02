@@ -1,0 +1,76 @@
+quarkus:
+  http:
+    port: 8080
+    access-log:
+      enabled: true
+    cors:
+      ~: true
+      origins: '*'
+      methods: DELETE, POST, PUT, GET
+      exposed-headers: Content-Disposition
+      access-control-max-age: 12H
+      access-control-allow-credentials: true
+  log:
+    level: INFO
+    category:
+      "org.apache.http":
+        level: INFO
+      "org.hibernate":
+        level: INFO
+      "org.acme":
+        level: INFO
+      "io.quarkus":
+        level: INFO
+    console:
+      enable: true
+      color: true
+      json:
+        ~: false
+        pretty-print: false
+      format: '%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n'
+    file:
+      level: INFO
+      enable: true
+      path: logs/quarkus.log
+      rotation:
+        file-suffix: .yyyy-MM-dd_HH:mm
+        max-backup-index: 100
+        max-file-size: 1M
+        rotate-on-boot: true
+      format: '%d{HH:mm:ss} %-5p [%c{2.}] (%t) %s%e%n'
+  cache:
+    caffeine:
+      "countries":
+        initial-capacity: 1
+        maximum-size: 1
+        expire-after-write: 360S
+  smallrye-health:
+    path: /app_metrics
+    root-path: /check
+    liveness-path: /live
+    readiness-path: /ready
+  datasource:
+    db-kind: postgresql
+    username: user
+    password: password
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/my_db
+  hibernate-orm:
+    database:
+      generation:
+        ~: drop-and-create
+  package:
+    type: native
+  native:
+    builder-image: quay.io/quarkus/ubi-quarkus-mandrel:21.2-java11
+    container-build: true
+    container-runtime: docker
+  banner:
+    enabled: true
+    path: default_banner.txt
+
+country-api/mp-rest/url: https://restcountries.com
+
+
+
+

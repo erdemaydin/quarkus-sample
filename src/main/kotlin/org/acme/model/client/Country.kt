@@ -1,4 +1,4 @@
-package org.acme.model.proxy
+package org.acme.model.client
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.acme.model.error.ApiErrorResponse

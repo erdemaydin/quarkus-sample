@@ -1,9 +1,9 @@
-package org.acme.proxy
+package org.acme.client
 
 import org.acme.model.error.ErrorCode.COUNTRY_API_CLIENT_ERROR
 import org.acme.model.error.ErrorCode.COUNTRY_API_SERVER_ERROR
-import org.acme.model.proxy.Country
-import org.acme.model.proxy.CountryApiError
+import org.acme.model.client.Country
+import org.acme.model.client.CountryApiError
 import org.eclipse.microprofile.rest.client.annotation.RegisterProvider
 import org.eclipse.microprofile.rest.client.ext.ResponseExceptionMapper
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response.Status.Family.CLIENT_ERROR
 @RegisterProvider(CountryApiExceptionMapper::class)
 @RegisterRestClient(configKey = "country-api")
 @Path("/v3.1")
-interface CountryProxy {
+interface CountryClient {
 
     @GET
     @Path("/all")

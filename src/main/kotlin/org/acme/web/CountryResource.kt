@@ -1,6 +1,6 @@
 package org.acme.web
 
-import org.acme.model.proxy.CountryApiError
+import org.acme.model.client.CountryApiError
 import org.acme.service.CountryService
 import org.eclipse.microprofile.metrics.MetricUnits
 import org.eclipse.microprofile.metrics.annotation.Counted
